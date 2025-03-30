@@ -19,7 +19,9 @@ const Navigation: FC = () => {
         display: "flex",
         flexFlow: "wrap",
         justifyContent: "end",
-        flexDirection: { xs: "column", lg: "row" }
+        flexDirection: { xs: "column", lg: "row" },
+        alignItems: "center",
+        flexGrow: 1
       }}
     >
       {navigations.map(({ path: destination, label }: NavigationData) =>
@@ -32,16 +34,16 @@ const Navigation: FC = () => {
             position: "relative",
             color: currentPath === destination ? "" : "white",
             lineHeight: "30px",
-            letterSpacing: "3px",
+            letterSpacing: "1px",
             cursor: "pointer",
             textDecoration: "none",
             textTransform: "uppercase",
             fontWeight: 700,
             alignItems: "center",
             justifyContent: "center",
-            px: { xs: 0, lg: 3 },
+            px: { xs: 0, lg: 1.5 },
             mb: { xs: 3, lg: 0 },
-            fontSize: "20px",
+            fontSize: { xs: "20px", lg: "16px" },
             ...destination === "/" && { color: "primary.main" },
             "& > div": { display: "none" },
             "&.current>div": { display: "block" },
@@ -75,14 +77,16 @@ const Navigation: FC = () => {
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
-          px: { xs: 0, lg: 3 },
+          px: { xs: 0, lg: 1.5 },
+          ml: { xs: 0, lg: 1 },
           mb: { xs: 3, lg: 0 },
-          fontSize: "24px",
+          fontSize: { xs: "24px", lg: "16px" },
           lineHeight: "6px",
-          width: "324px",
+          width: { xs: "324px", lg: "200px" },
           height: "45px",
           borderRadius: "6px",
-          backgroundColor: "#00dbe3"
+          backgroundColor: "#00dbe3",
+          whiteSpace: "nowrap"
         }}
       >
         Connect Wallet
