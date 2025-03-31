@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { styled, Container, useTheme } from "@mui/material";
+import { styled, Box, useTheme } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import { Header } from "../header";
 import { Footer } from "../footer";
@@ -16,27 +16,32 @@ const PageWrapper = styled("div")(() => ({
   flexGrow: 1,
   flexDirection: "column",
   zIndex: 1,
-  backgroundColor: "transparent"
+  backgroundColor: "transparent",
+  width: "100%",
+  overflow: "hidden" // Prevent horizontal scrolling
 }));
 
 const Layout = () => {
   const theme = useTheme();
+  
+  // Custom container style that fixes margin issues on all screens
+  const containerStyle = {
+    padding: "0px !important",
+    width: "100%",
+    maxWidth: "100%",
+    overflowX: "hidden",
+    marginLeft: 0,
+    marginRight: 0
+  };
+  
   return (
     <MainWrapper>
       <PageWrapper>
         <Header />
-        <Container
-          sx={{
-            padding: "0px !important",
-            [theme.breakpoints.up("sm")]: {
-              maxWidth: "100%"
-            },
-            width: "calc(100vw - 6px)"
-          }}
-        >
+        <Box sx={containerStyle}>
           <Outlet />
           {Notifications()}
-        </Container>
+        </Box>
         <Footer />
       </PageWrapper>
     </MainWrapper>
